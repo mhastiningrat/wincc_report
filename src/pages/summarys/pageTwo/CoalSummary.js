@@ -1,3 +1,4 @@
+import axios from "axios";
 import moment from "moment";
 import React from "react";
 
@@ -5,6 +6,14 @@ const CoalSummary = () => {
 	const getDateValue = (e) => {
 		console.log(e);
 	};
+
+	const print = async() =>{
+		let res = await axios.get("https://wincc-report-api.vercel.app/api/summary-page2/export");
+		console.log(res)
+		if(res){
+			window.open("https://wincc-report-api.vercel.app/api/summary-page2/export","_parent")
+		}
+	}
 	return (
 		<div>
 			<div className="d-flex gap-2 p-4">
@@ -25,6 +34,10 @@ const CoalSummary = () => {
 				<button className="btn btn-sm btn-primary">
 					<i className="bi bi-search"></i>&nbsp; Find
 				</button>
+				<button className="btn btn-sm btn-success" onClick={()=>print()}>
+					<i className="bi bi-file"></i>&nbsp; Export
+				</button>
+
 			</div>
 			<table className="table table-responsive table-bordered">
 				<thead>

@@ -1,6 +1,15 @@
+import axios from "axios";
 import React from "react";
 
 const Rate = () => {
+
+	const print = async() =>{
+		let res = await axios.get("https://wincc-report-api.vercel.app/api/lowrate/export");
+		console.log(res)
+		if(res){
+			window.open("https://wincc-report-api.vercel.app/api/lowrate/export","_parent")
+		}
+	}
 	return (
 		<div>
 			<div className="text-center p-4">
@@ -12,6 +21,9 @@ const Rate = () => {
 				<input type="time" className="form-control-sm" placeholder="Shift" />
 				<button className="btn btn-sm btn-primary">
 					<i className="bi bi-search"></i>&nbsp; Find
+				</button>
+				<button className="btn btn-sm btn-success" onClick={()=>print()}>
+					<i className="bi bi-file"></i>&nbsp; Export
 				</button>
 			</div>
 			<table className="table table-responsive table-bordered">

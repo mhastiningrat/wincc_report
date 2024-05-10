@@ -8,8 +8,16 @@ import BargeLoadingShippingDetail from "./BargeLoadingShippingDetail";
 import EquipmentDetail from "./EquipmentDetail";
 import Notes from "./Notes";
 import Container from "../../../components/Container";
+import axios from "axios";
 
 const Sumaries = () => {
+	const print = async() =>{
+		let res = await axios.get("https://wincc-report-api.vercel.app/api/summary-page1/export");
+		console.log(res)
+		if(res){
+			window.open("https://wincc-report-api.vercel.app/api/summary-page1/export","_parent")
+		}
+	}
 	return (
 		<Container>
 			<div className="container bg-ligth overflow-x-scroll">
@@ -25,6 +33,9 @@ const Sumaries = () => {
 					<button className="btn btn-sm btn-primary">
 						<i className="bi bi-search"></i>&nbsp; Find
 					</button>
+					<button className="btn btn-sm btn-success" onClick={()=>print()}>
+					<i className="bi bi-file"></i>&nbsp; Export
+				</button>
 				</div>
 				<OperatorOnDuty />
 
